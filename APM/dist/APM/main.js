@@ -56,6 +56,7 @@ module.exports = "<div class='card'>\r\n    <div class='card-header'>\r\n       
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductListComponent", function() { return ProductListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _product_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product.service */ "./src/app/Product/product.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,36 +67,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent() {
+    function ProductListComponent(productService) {
+        this.productService = productService;
         this.pageTitle = 'Product List';
         this.imageWidth = 50;
         this.imageMargin = 2;
         this.showImage = false;
-        this.products = [
-            {
-                "productId": 2,
-                "productName": "Garden Cart",
-                "productCode": "GDN-0023",
-                "ReleaseDate": "March 18, 2016",
-                "Description": "15 gallon capacity rolling garden",
-                "price": 32.99,
-                "starRating": 4.2,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-            },
-            {
-                "productId": 5,
-                "productName": "Hammer",
-                "productCode": "TBX-0048",
-                "ReleaseDate": "May 21, 2016",
-                "Description": "Curved claw steel hammer",
-                "price": 8.9,
-                "starRating": 4.8,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-            }
-        ];
-        this.filterProducts = this.products;
-        this._listFilter = 'cart';
+        this.products = [];
+        // this._listFilter = 'cart';
     }
     Object.defineProperty(ProductListComponent.prototype, "listFilter", {
         get: function () {
@@ -121,7 +102,8 @@ var ProductListComponent = /** @class */ (function () {
         this.showImage = !this.showImage;
     };
     ProductListComponent.prototype.ngOnInit = function () {
-        console.log('In Onit');
+        this.products = this.productService.getProducts();
+        this.filterProducts = this.products;
     };
     ProductListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -129,9 +111,86 @@ var ProductListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./product-list.component.html */ "./src/app/Product/product-list.component.html"),
             styles: [__webpack_require__(/*! ./product-list.component.css */ "./src/app/Product/product-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_product_service__WEBPACK_IMPORTED_MODULE_1__["ProductService"]])
     ], ProductListComponent);
     return ProductListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/Product/product.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/Product/product.service.ts ***!
+  \********************************************/
+/*! exports provided: ProductService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductService", function() { return ProductService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var ProductService = /** @class */ (function () {
+    function ProductService() {
+    }
+    ProductService.prototype.getProducts = function () {
+        return [
+            {
+                "productId": 2,
+                "productName": "Garden Cart",
+                "productCode": "GDN-0023",
+                "ReleaseDate": "March 18, 2016",
+                "Description": "15 gallon capacity rolling garden",
+                "price": 32.99,
+                "starRating": 4.2,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+            },
+            {
+                "productId": 5,
+                "productName": "Hammer",
+                "productCode": "TBX-0048",
+                "ReleaseDate": "May 21, 2016",
+                "Description": "Curved claw steel hammer",
+                "price": 8.9,
+                "starRating": 4.8,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+            },
+            {
+                "productId": 8,
+                "productName": "Saw",
+                "productCode": "TBX-0022",
+                "ReleaseDate": "May 15, 2016",
+                "Description": "15-inch steel blade hand saw",
+                "price": 11.55,
+                "starRating": 3.7,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
+            },
+            {
+                "productId": 10,
+                "productName": "Video Game Controller",
+                "productCode": "GMG-0042",
+                "ReleaseDate": "October 15, 2015",
+                "Description": "Standard two-button video game controller",
+                "price": 35.95,
+                "starRating": 4.6,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
+            }
+        ];
+    };
+    ProductService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], ProductService);
+    return ProductService;
 }());
 
 
@@ -400,7 +459,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Github\APM\APM\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Github-projects\APM\APM\src\main.ts */"./src/main.ts");
 
 
 /***/ })

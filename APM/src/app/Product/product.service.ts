@@ -1,33 +1,35 @@
-import { Iproduct } from "./product";
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+
+import { Iproduct } from './product';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    getProducts() : Iproduct[] {
-        return [
-            {
-                "productId": 2,
-                "productName": "Garden Cart",
-                "productCode": "GDN-0023",
-                "ReleaseDate": "March 18, 2016",
-                "Description": "15 gallon capacity rolling garden",
-                "price": 32.99,
-                "starRating": 4.2,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-            },
-            {
-                "productId": 5,
-                "productName": "Hammer",
-                "productCode": "TBX-0048",
-                "ReleaseDate": "May 21, 2016",
-                "Description": "Curved claw steel hammer",
-                "price": 8.9,
-                "starRating": 4.8,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-            }
-        ];
+
+    private productUrl = 'api/products/products.json';
+    constructor(private http : HttpClient){}
+
+    getProducts() : Observable<Iproduct[]> {
+        return this.http.get<Iproduct[]>(this.productUrl).pipe(
+            tap(data => console.log('All: ' + JSON.stringify(data) )),
+            catchError(this.handleError)
+        );
+    }
+
+    private handleError (err: HttpErrorResponse)
+    {
+        let errorMessage =  '';
+        if(err.error instanceof ErrorEvent){
+            errorMessage = `An error occured: ${err.error.message}`;
+        } else {
+            errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+        }
+        console.error(errorMessage);
+        return throwError(errorMessage);
     }
 }
