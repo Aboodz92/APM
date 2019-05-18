@@ -15,6 +15,9 @@ export class ProductListComponent implements OnInit {
     showImage: boolean = false;
     errorMessage: string;
 
+    filterProducts: Iproduct[];
+    products: Iproduct[] = [];
+
     _listFilter: string;
     get listFilter(): string {
         return this._listFilter;
@@ -24,9 +27,6 @@ export class ProductListComponent implements OnInit {
         this._listFilter = value;
         this.filterProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
-
-    filterProducts: Iproduct[];
-    products: Iproduct[] = [];
 
     constructor(private productService : ProductService) {
         // this._listFilter = 'cart';
