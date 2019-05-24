@@ -23,6 +23,69 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/Product/product-detail.component.css":
+/*!******************************************************!*\
+  !*** ./src/app/Product/product-detail.component.css ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL1Byb2R1Y3QvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/Product/product-detail.component.html":
+/*!*******************************************************!*\
+  !*** ./src/app/Product/product-detail.component.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<div class='card' *ngIf='product'>\r\n  <div class='card-header'>\r\n    {{pageTitle + ': ' + product?.productName}}\r\n  </div>\r\n</div>>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/Product/product-detail.component.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/Product/product-detail.component.ts ***!
+  \*****************************************************/
+/*! exports provided: ProductDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductDetailComponent", function() { return ProductDetailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProductDetailComponent = /** @class */ (function () {
+    function ProductDetailComponent() {
+        this.pageTitle = 'Product Detail';
+    }
+    ProductDetailComponent.prototype.ngOnInit = function () {
+    };
+    ProductDetailComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            template: __webpack_require__(/*! ./product-detail.component.html */ "./src/app/Product/product-detail.component.html"),
+            styles: [__webpack_require__(/*! ./product-detail.component.css */ "./src/app/Product/product-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProductDetailComponent);
+    return ProductDetailComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/Product/product-list.component.css":
 /*!****************************************************!*\
   !*** ./src/app/Product/product-list.component.css ***!
@@ -102,12 +165,15 @@ var ProductListComponent = /** @class */ (function () {
         this.showImage = !this.showImage;
     };
     ProductListComponent.prototype.ngOnInit = function () {
-        this.products = this.productService.getProducts();
-        this.filterProducts = this.products;
+        var _this = this;
+        this.productService.getProducts().subscribe(function (_products) {
+            _this.products = _products;
+            _this.filterProducts = _this.products;
+        }, function (error) { return _this.errorMessage = error; });
     };
     ProductListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'pm-products',
+            // selector:'pm-products',
             template: __webpack_require__(/*! ./product-list.component.html */ "./src/app/Product/product-list.component.html"),
             styles: [__webpack_require__(/*! ./product-list.component.css */ "./src/app/Product/product-list.component.css")]
         }),
@@ -131,64 +197,46 @@ var ProductListComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductService", function() { return ProductService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 
 var ProductService = /** @class */ (function () {
-    function ProductService() {
+    function ProductService(http) {
+        this.http = http;
+        this.productUrl = 'api/products/products.json';
     }
     ProductService.prototype.getProducts = function () {
-        return [
-            {
-                "productId": 2,
-                "productName": "Garden Cart",
-                "productCode": "GDN-0023",
-                "ReleaseDate": "March 18, 2016",
-                "Description": "15 gallon capacity rolling garden",
-                "price": 32.99,
-                "starRating": 4.2,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-            },
-            {
-                "productId": 5,
-                "productName": "Hammer",
-                "productCode": "TBX-0048",
-                "ReleaseDate": "May 21, 2016",
-                "Description": "Curved claw steel hammer",
-                "price": 8.9,
-                "starRating": 4.8,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-            },
-            {
-                "productId": 8,
-                "productName": "Saw",
-                "productCode": "TBX-0022",
-                "ReleaseDate": "May 15, 2016",
-                "Description": "15-inch steel blade hand saw",
-                "price": 11.55,
-                "starRating": 3.7,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
-            },
-            {
-                "productId": 10,
-                "productName": "Video Game Controller",
-                "productCode": "GMG-0042",
-                "ReleaseDate": "October 15, 2015",
-                "Description": "Standard two-button video game controller",
-                "price": 35.95,
-                "starRating": 4.6,
-                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
-            }
-        ];
+        return this.http.get(this.productUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log('All: ' + JSON.stringify(data)); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ProductService.prototype.handleError = function (err) {
+        var errorMessage = '';
+        if (err.error instanceof ErrorEvent) {
+            errorMessage = "An error occured: " + err.error.message;
+        }
+        else {
+            errorMessage = "Server returned code: " + err.status + ", error message is: " + err.message;
+        }
+        console.error(errorMessage);
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errorMessage);
     };
     ProductService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], ProductService);
     return ProductService;
 }());
@@ -222,7 +270,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'pm-root',
-            template: "\n  <div>\n    <h1>{{PageTitle}} </h1>\n    <pm-products> </pm-products>\n  </div>\n"
+            template: "\n  <nav class='nav navbar-expand navbar-light bg-light'>\n    <a class='navbar-brand'> {{PageTitle}}\n    <ul class='nav nav-pills'>\n      <li><a class='nav-link' [routerLink]=\"['/welcome']\">Home</a></li>\n      <li><a class='nav-link' [routerLink]=\"['/product']\">Products</a><</li>\n    </ul>\n  </nav>\n"
         })
     ], AppComponent);
     return AppComponent;
@@ -245,10 +293,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _Product_product_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Product/product-list.component */ "./src/app/Product/product-list.component.ts");
-/* harmony import */ var _shared_star_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/star.component */ "./src/app/shared/star.component.ts");
-/* harmony import */ var _shared_convert_to_spaces_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shared/convert-to-spaces.pipe */ "./src/app/shared/convert-to-spaces.pipe.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _Product_product_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Product/product-list.component */ "./src/app/Product/product-list.component.ts");
+/* harmony import */ var _shared_star_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/star.component */ "./src/app/shared/star.component.ts");
+/* harmony import */ var _shared_convert_to_spaces_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/convert-to-spaces.pipe */ "./src/app/shared/convert-to-spaces.pipe.ts");
+/* harmony import */ var _Product_product_detail_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Product/product-detail.component */ "./src/app/Product/product-detail.component.ts");
+/* harmony import */ var _home_welcome_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home/welcome.component */ "./src/app/home/welcome.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -262,25 +314,84 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _Product_product_list_component__WEBPACK_IMPORTED_MODULE_4__["ProductListComponent"],
-                _shared_convert_to_spaces_pipe__WEBPACK_IMPORTED_MODULE_6__["ConvertToSpacesPipe"],
-                _shared_star_component__WEBPACK_IMPORTED_MODULE_5__["StarComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+                _Product_product_list_component__WEBPACK_IMPORTED_MODULE_6__["ProductListComponent"],
+                _shared_convert_to_spaces_pipe__WEBPACK_IMPORTED_MODULE_8__["ConvertToSpacesPipe"],
+                _shared_star_component__WEBPACK_IMPORTED_MODULE_7__["StarComponent"],
+                _Product_product_detail_component__WEBPACK_IMPORTED_MODULE_9__["ProductDetailComponent"],
+                _home_welcome_component__WEBPACK_IMPORTED_MODULE_10__["WelcomeComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot([
+                    { path: 'product', component: _Product_product_list_component__WEBPACK_IMPORTED_MODULE_6__["ProductListComponent"] },
+                    { path: 'product/:id', component: _Product_product_detail_component__WEBPACK_IMPORTED_MODULE_9__["ProductDetailComponent"] },
+                    { path: 'welcome', component: _home_welcome_component__WEBPACK_IMPORTED_MODULE_10__["WelcomeComponent"] },
+                    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+                    { path: '**', redirectTo: 'welcome', pathMatch: 'full' } //Wildcard, and usually use for the 404 pages.
+                ])
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/home/welcome.component.html":
+/*!*********************************************!*\
+  !*** ./src/app/home/welcome.component.html ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card\">\r\n  <div class=\"card-header\">\r\n    {{pageTitle}}\r\n  </div>\r\n  <div class=\"card-body\">\r\n    <div class=\"container-fluid\">\r\n      <div class=\"text-center\">\r\n        <img src=\"./assets/images/logo.jpg\"\r\n             class=\"img-responsive center-block\"\r\n             style=\"max-height:300px;padding-bottom:50px\" />\r\n      </div>\r\n\r\n      <div class=\"text-center\">Developed by:</div>\r\n      <div class=\"text-center\">\r\n        <h3>Deborah Kurata</h3>\r\n      </div>\r\n\r\n      <div class=\"text-center\">@deborahkurata</div>\r\n      <div class=\"text-center\">\r\n        <a href=\"http://www.bit.ly/DeborahKsBlog\">www.bit.ly/DeborahKsBlog</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/home/welcome.component.ts":
+/*!*******************************************!*\
+  !*** ./src/app/home/welcome.component.ts ***!
+  \*******************************************/
+/*! exports provided: WelcomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomeComponent", function() { return WelcomeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WelcomeComponent = /** @class */ (function () {
+    function WelcomeComponent() {
+        this.pageTitle = 'Welcome';
+    }
+    WelcomeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            template: __webpack_require__(/*! ./welcome.component.html */ "./src/app/home/welcome.component.html")
+        })
+    ], WelcomeComponent);
+    return WelcomeComponent;
 }());
 
 

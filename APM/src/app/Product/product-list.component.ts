@@ -3,7 +3,7 @@ import { Iproduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-selector:'pm-products',
+// selector:'pm-products',
 templateUrl: './product-list.component.html',
 styleUrls: ['./product-list.component.css']
 })
@@ -49,8 +49,8 @@ export class ProductListComponent implements OnInit {
 
     ngOnInit(): void {
         this.productService.getProducts().subscribe(
-            products => {
-                this.products = products;
+            _products => {
+                this.products = _products;
                 this.filterProducts = this.products;
             },
             error => this.errorMessage = <any> error

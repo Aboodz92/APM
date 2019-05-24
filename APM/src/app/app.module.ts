@@ -25,10 +25,11 @@ import { WelcomeComponent } from './home/welcome.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'product', component: ProductListComponent},
-      {path: 'roduct/:id', component: ProductDetailComponent},
+      {path: 'products', component: ProductListComponent},
+      {path: 'product/:id', component: ProductDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
-      {path:'', redirectTo:'welcome', pathMatch:'full'}
+      {path:'', redirectTo:'welcome', pathMatch:'full'},
+      {path:'**', redirectTo:'welcome', pathMatch:'full'} //Wildcard, and usually use for the 404 pages.
     ])
   ],
   bootstrap: [AppComponent]
